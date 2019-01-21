@@ -417,7 +417,7 @@ footer .footer_discl {
     border: 1px solid #ececec;
     width: 300px;
     padding: 10px 10px 20px 10px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 .player_card_wrapper .player_card_thmb {
     border: 1px solid #eeeeee;
@@ -432,20 +432,21 @@ footer .footer_discl {
     position: relative;
 }
 .player_card_wrapper .player_card_number {
-    color: #d6ecfe;
-    font-size: 185px;
+    color: #7985a0;
+    font-size: 150px;
     text-align: right;
     line-height: 160px;
 }
 
 .player_card_wrapper .player_card_name {
     position: absolute;
-    bottom: 0px;
+    bottom: 15px;
 }
 
 .player_card_wrapper .player_card_name span { 
     display: block;
     font-size: 25px;
+    font-weight: 400;
     color: #0d1831;
 }
 
