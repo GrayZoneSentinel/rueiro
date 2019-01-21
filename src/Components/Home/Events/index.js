@@ -15,7 +15,7 @@ const EventsHome = () => {
                 color:'lightBlue'
             }}
         >
-            First event
+            Próximas actividades
         </Tag>
 
         <Blocks/>
