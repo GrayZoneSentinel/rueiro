@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Tag } from '../../ui/misc';
+import Blocks from './Blocks';
 
 const EventsHome = () => {
   return (
@@ -17,7 +18,7 @@ const EventsHome = () => {
             First event
         </Tag>
 
-        BLOCK
+        <Blocks/>
 
         <Tag
             bck="#ffffff"
