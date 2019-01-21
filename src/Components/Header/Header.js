@@ -35,16 +35,16 @@ class Header extends Component {
                     </div>
                 </div>
                 <Link to="/the_members">
-                    <Button color="#98c5e9"> Socios </Button>
+                    <Button color="primary"> Socios </Button>
                 </Link>
                 <Link to="/the_events">
-                    <Button color="#98c5e9"> Actividades </Button>
+                    <Button color="primary"> Actividades </Button>
                 </Link>
                 <Link to="/the_news">
-                    <Button color="#98c5e9"> Noticias </Button>
+                    <Button color="primary"> Noticias </Button>
                 </Link>
                 <Link to="/the_management">
-                    <Button color="#98c5e9"> Management </Button>
+                    <Button color="primary"> Management </Button>
                 </Link>
             </Toolbar>  
       </AppBar>

@@ -13,12 +13,11 @@ export const RueiroLogo = (props) => {
             background: `url(${Logo}) no-repeat`
         }}
     >
-        logo
     </div>
     
     if(props.link) {
         return (
-            <Link to={props.linkTo} class="link_logo">
+            <Link to={props.linkTo} className="link_logo">
                 {template}
             </Link>
         )
