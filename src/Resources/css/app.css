@@ -1,7 +1,7 @@
 body {
     margin:0;
     padding:0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -132,7 +132,7 @@ button {
     min-height: 100vh;
     text-align: center;
     font-size: 90px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     color: #d5ebfe;
 }
 
@@ -174,7 +174,7 @@ footer .footer_discl {
 }
 .featured_text {
     position: relative;
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
 }
 
 
@@ -184,14 +184,14 @@ footer .footer_discl {
     position: absolute;
 }
 
-.featured_number {
-    font-size: 270px;
+.featured_name {
+    font-size: 250px;
     color: #ffffff;
     transform: translate(260px,170px);
     position: absolute;
 }
 
-.featured_player {
+.featured_logo {
     width: 500px;
     height: 500px;
     background-size: contain !important;
@@ -200,7 +200,8 @@ footer .footer_discl {
 }
 .featured_first {
     position: absolute;
-    background: #0e1731;
+    /* background: #0e1731; */
+    background: transparent;
     color: #ffffff;
     font-size: 92px;
     text-transform: uppercase;
@@ -262,7 +263,7 @@ footer .footer_discl {
 .match_block .match_wrapper .match_top .left,
 .match_block .match_wrapper .match_bottom .left {
     background: #ffffff; 
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     flex-grow: 1;
     margin-right: 5px;
     padding: 10px;
@@ -416,7 +417,7 @@ footer .footer_discl {
     border: 1px solid #ececec;
     width: 300px;
     padding: 10px 10px 20px 10px;
-    font-family: 'Righteous';
+    font-family: 'Playfair Display', serif;
 }
 .player_card_wrapper .player_card_thmb {
     border: 1px solid #eeeeee;
@@ -470,7 +471,7 @@ footer .footer_discl {
     text-transform: uppercase;
     text-transform: uppercase;
     font-size: 150px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     flex-grow: 1;
     color:#d5ebfd;
     line-height: 135px;
@@ -494,7 +495,7 @@ footer .footer_discl {
 }
 
 .promotion_wrapper .enroll_title {
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     font-size: 26px;
     color: #4e4e4e;
 }
@@ -635,7 +636,7 @@ footer .footer_discl {
 .team_category_wrapper .title {
     font-size: 90px;
     margin: 30px 0px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     color: #d5ebfe;
 }
 
@@ -670,14 +671,14 @@ footer .footer_discl {
 }
 
 .signin_wrapper h2 {
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     color: #98c6e9;
     font-size: 50px;
 }
 
 .user_dashboard {
     font-size: 60px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Playfair Display', serif;
     color: #d5ebfe;
     text-align: center;
     margin-top: 200px;

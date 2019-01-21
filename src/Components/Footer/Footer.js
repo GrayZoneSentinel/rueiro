@@ -9,8 +9,8 @@ const Footer = () => {
                 <RueiroLogo 
                     link={true}
                     linkTo="/" 
-                    width="80px"
-                    height="60px"
+                    width="140px"
+                    height="120px"
                 />
             </div>
         </footer>
