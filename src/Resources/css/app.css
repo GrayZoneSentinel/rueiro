@@ -432,7 +432,7 @@ footer .footer_discl {
     position: relative;
 }
 .player_card_wrapper .player_card_number {
-    color: #7985a0;
+    color: #008ee0;
     font-size: 150px;
     text-align: right;
     line-height: 160px;
@@ -440,7 +440,7 @@ footer .footer_discl {
 
 .player_card_wrapper .player_card_name {
     position: absolute;
-    bottom: 15px;
+    bottom: 16px;
 }
 
 .player_card_wrapper .player_card_name span { 
@@ -471,11 +471,11 @@ footer .footer_discl {
 .promotion_wrapper .promotion_animation .left { 
     text-transform: uppercase;
     text-transform: uppercase;
-    font-size: 150px;
+    font-size: 80px;
     font-family: 'Playfair Display', serif;
     flex-grow: 1;
-    color:#d5ebfd;
-    line-height: 135px;
+    color:#0e1731;
+    line-height: 100px;
 }
 .promotion_wrapper .promotion_animation .left span {
     display:block;
@@ -496,8 +496,9 @@ footer .footer_discl {
 }
 
 .promotion_wrapper .enroll_title {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 100;
     color: #4e4e4e;
 }
 
