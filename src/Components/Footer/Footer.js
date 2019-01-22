@@ -13,6 +13,9 @@ const Footer = () => {
                     height="120px"
                 />
             </div>
+            <div className="footer_disc">
+                Club Familiar Rueiro ® 2019
+            </div>
         </footer>
     );
 };
