@@ -17,9 +17,10 @@ var config = {
 //   firebaseDB.ref('matches').once('value').then((snapshot)=>{
 //       console.log(snapshot.val())
 //   })
-
   const firebaseMatches = firebaseDB.ref('matches');
+  const firebasePromotions = firebaseDB.ref('promotions');
 export {
     firebase,
-    firebaseMatches
+    firebaseMatches,
+    firebasePromotions
 }

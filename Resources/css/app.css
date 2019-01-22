@@ -505,6 +505,7 @@ footer .footer_discl {
     width: 271px;
     margin: 0 auto;
     padding: 10px 0px;
+    text-align: justify;
 }
 
 .promotion_wrapper .enroll_input {
