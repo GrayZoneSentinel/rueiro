@@ -42,7 +42,8 @@ const AdminNav = () => {
     const style = {
         color: '#ffffff',
         fontWeight: '300',
-        borderBottom: '1px solid #ffffff'
+        borderBottom: '1px solid #ffffff',
+        paddingTop: '15px'
     }
 
     const styleLogOut = {

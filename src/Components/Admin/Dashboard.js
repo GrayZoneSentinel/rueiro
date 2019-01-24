@@ -6,7 +6,7 @@ const Dashboard = () => {
         <AdminLayout>
             <div className="user_dashboard">
                 <div>
-                    THIS IS Dashboard
+                    PANEL DE ADMINISTRACIÓN
                 </div>
             </div>  
         </AdminLayout>    

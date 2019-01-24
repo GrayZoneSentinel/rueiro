@@ -46,7 +46,7 @@ class HomeCards extends Component {
                 enter={{
                     left: [card.left],
                     bottom: [card.bottom],
-                    timing: {duration: 800, ease: easePolyOut}
+                    timing: {delay: 1000, duration: 1500, ease: easePolyOut}
                 }}
             >
                 {({ left, bottom })=>{

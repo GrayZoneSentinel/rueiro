@@ -140,7 +140,7 @@ class Enroll extends Component {
                             <button onClick={(event)=> this.submitForm(event)}>Enviar</button>
                             <div className="enroll_discl">
                                 <p>
-                                    <strong>Atención: </strong> al enviar tu dirección de email consientes que Club Familiar Rueiro te envíe correos electrónicos informativos, en respuesta a tu solicitud.
+                                    <strong>Atención: </strong> al enviar tu dirección de email consientes que Club Familiar Rueiro remita correos electrónicos informativos en atención a tu solicitud.
                                 </p>
                             </div>
                         </div>

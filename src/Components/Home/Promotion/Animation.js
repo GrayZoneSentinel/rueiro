@@ -1,6 +1,6 @@
 import React from 'react';
 import Zoom from 'react-reveal/Zoom';
-import Jersey from '../../../Resources/images/jersey.jpg';
+import RueiroLogo from '../../../Resources/images/logos/logo.png';
 
 const PromotionAnimation = () => {
     return (
@@ -15,7 +15,7 @@ const PromotionAnimation = () => {
             </div>
             <div className="right">
                 <Zoom>
-                    <div style={{background:`url(${Jersey}) no-repeat`}}></div>
+                    <div style={{background:`url(${RueiroLogo}) no-repeat`}}></div>
                 </Zoom>
             </div>
         </div>
