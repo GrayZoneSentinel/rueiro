@@ -9,8 +9,8 @@ const Home = () => {
     return (
         <div className="bck_blue">
             <Featured/>
-            <Events/>
             <MeetPlayers/>
+            <Events/>
             <Promotion/>
         </div>
     )

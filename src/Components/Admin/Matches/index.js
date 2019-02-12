@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AdminLayout from '../../../Hoc/AdminLayout';
 
+
 import { firebaseMatches } from '../../../firebase';
 import { firebaseLooper, reverseArray } from '../../ui/misc';
 
@@ -59,7 +60,7 @@ class AdminMatches extends Component {
                                             <TableRow key={i}>
                                                 <TableCell>{match.date}</TableCell>
                                                 <TableCell>
-                                                    <Link to={`/admin_matches/edit_match/${match.id}`}>
+                                                    <Link to={`/admin_members/edit_member/${match.id}`}>
                                                         {match.away} <strong>-</strong> {match.local}
                                                     </Link>
                                                 </TableCell>
