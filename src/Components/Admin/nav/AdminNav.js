@@ -17,6 +17,14 @@ const AdminNav = () => {
             linkTo: '/admin_members/new_member'
         },
         {
+            title: 'Asociados',
+            linkTo: '/admin_associates'
+        },
+        {
+            title: 'Alta asociado',
+            linkTo: '/admin_associates/new_associate'
+        },
+        {
             title: 'Actividades',
             linkTo: '/admin_events'
         },

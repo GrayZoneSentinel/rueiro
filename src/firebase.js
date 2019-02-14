@@ -21,9 +21,16 @@ var config = {
   const firebaseMatches = firebaseDB.ref('matches');
   const firebasePromotions = firebaseDB.ref('promotions');
   const firebaseTeams = firebaseDB.ref('teams');
+
+  // Try to create a folder in Firebase to record the associates
+  const firebaseAssociates = firebaseDB.ref('associates');
+
 export {
     firebase,
     firebaseMatches,
+    //
+    firebaseAssociates,
+    //
     firebasePromotions,
     firebaseTeams,
     firebaseDB
