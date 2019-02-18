@@ -12,7 +12,7 @@ const PublicRoutes = ({
         ?
         ( user 
             ? 
-            <Redirect to="/dasboard"/>
+            <Redirect to="/dashboard"/>
             :
             <Comp {...props} user={user}/>
         )

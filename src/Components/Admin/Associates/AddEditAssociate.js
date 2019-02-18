@@ -4,6 +4,8 @@ import FormField from '../../ui/formFields';
 import { validate } from '../../ui/misc';
 import AdminLayout from '../../../Hoc/AdminLayout';
 
+import FileUploader from '../../ui/fileuploader';
+
 import { firebaseAssociates, firebaseDB } from '../../../firebase';
 // import { firebaseLooper } from '../../ui/misc';
 
@@ -11,9 +13,10 @@ class AddEditAssociate extends Component {
 
     state = {
         associateId: '',
-        formType: 'Alta asociado',
+        formType: '',
         formError: false,
         formSuccess: '',
+        defaultImg:'',
         formdata: {
             nombre: {
                 element: 'input',
@@ -134,26 +137,36 @@ class AddEditAssociate extends Component {
                 valid: false,
                 validationMessage: '',
                 showlabel: true
-            }
+            },
+            image:{
+                element:'image',
+                value:'',
+                validation:{
+                    required:true
+                },
+                valid:false
+            } 
         }
     }
 
-    updateForm(element){
+    updateForm(element, content = ''){
         // console.log(element)
         const newFormdata = {...this.state.formdata}
         const newElement = {...newFormdata[element.id]}
 
-        newElement.value = element.event.target.value;
+        if( content === ''){
+            newElement.value = element.event.target.value;
+        } else {
+            newElement.value = content
+        }
+    
         // console.log(validData)
-        
-
         let validData = validate(newElement)
         newElement.valid = validData[0];
         newElement.validationMessage = validData[1]
 
         newFormdata[element.id] = newElement;
-
-        console.log(newFormdata)
+        // console.log(newFormdata)
 
         this.setState({
             formError: false,
@@ -203,7 +216,7 @@ class AddEditAssociate extends Component {
 
         if(formIsValid){
             // console.log(dataToSubmit)
-            if(this.state.formType === 'Edit associate'){
+            if(this.state.formType === 'Editar asociado'){
                 firebaseDB.ref(`associates/${this.state.associateId}`)
                 .update(dataToSubmit).then(()=>{
                     this.successForm('Actualizado')
@@ -229,38 +242,62 @@ class AddEditAssociate extends Component {
     }
 
     
-    // componentDidMount() {
-    //     const associateId = this.props.associate.params.id;
+    componentDidMount() {
+        const associateId = this.props.match.params.id;
         
-    //     const getAssociates = (associate, type) => {
-    //         // firebaseAssociates.once('value').then(snapshot => {
-                
-    //             this.updateFields( associate, type, associateId )
-    //         // })
-    //     }
+        const getAssociates = (associate, type) => {
+            firebaseAssociates.once('value').then(snapshot => {    
+                this.updateFields( associate, type, associateId )
+            })
+        }
         
-    //     // console.log(matchId);
-    //     if(!associateId){
-    //         //Add matchID
-    //         getAssociates(false, 'Agregar socio')
-    //     } else {
-    //         firebaseDB.ref(`associates/${associateId}`).once('value')
-    //         .then((snapshot)=>{
-    //             const associate = snapshot.val();
-    //             getAssociates(associate, 'Editar asociado')
-    //         })
-    //     }
-    // }
+        // console.log(matchId);
+        if(!associateId){
+            //Add matchID
+            getAssociates(false, 'Agregar asociado')
+        } else {
+            firebaseDB.ref(`associates/${associateId}`).once('value')
+            .then((snapshot)=>{
+                const associate = snapshot.val();
+                getAssociates(associate, 'Editar asociado')
+            })
+        }
+    }
+
+    resetImage = () => {
+        const newFormdata = {...this.state.formdata}
+        newFormdata['image'].value = '';
+        newFormdata['image'].valid= false;
+        this.setState({
+            defaultImg: '',
+            formdata: newFormdata
+        }) 
+    }
+
+    storeFilename = (filename) => {
+        this.updateForm({id:'image'}, filename)
+    }
 
   render() {
+      console.log(this.state.formdata)
     return (
       <AdminLayout>
-        <div className="editmatch_dialog_wrapper">
+        <div className="editassociate_dialog_wrapper">
             <h2>
                 {this.state.formType}
             </h2>
             <div>
                 <form onSubmit={(event)=> this.submitForm(event)}>
+
+                    <FileUploader
+                        dir="associates"
+                        tag={"Foto asociado"}
+                        defaultImg={this.state.defaultImg}
+                        defaultImgName={this.state.formdata.image.value}
+                        resetImage={()=> this.resetImage()}
+                        filename={(filename)=> this.storeFilename(filename)}
+                    />
+
                     <FormField
                         id={'nombre'}
                         formdata={this.state.formdata.nombre}
