@@ -105,7 +105,7 @@ class Fileuploader extends Component {
                 ?
                     <div className="image_upload_container">
                         <img
-                            style={{ width:'100%'}}
+                            style={{ width:'90%'}}
                             src={this.state.fileURL}
                             alt={this.state.name}
                         />

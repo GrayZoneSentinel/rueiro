@@ -13,10 +13,6 @@ const AdminNav = () => {
             linkTo: '/admin_members'
         },
         {
-            title: 'Alta nuevo socio',
-            linkTo: '/admin_members/new_member'
-        },
-        {
             title: 'Asociados',
             linkTo: '/admin_associates'
         },
@@ -49,9 +45,10 @@ const AdminNav = () => {
 
     const style = {
         color: '#ffffff',
-        fontWeight: '300',
+        fontWeight: '100',
         borderBottom: '1px solid #ffffff',
-        paddingTop: '15px'
+        paddingTop: '15px',
+        fontSize: '14px'
     }
 
     const styleLogOut = {

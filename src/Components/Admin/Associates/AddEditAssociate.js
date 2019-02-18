@@ -7,9 +7,10 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 import FileUploader from '../../ui/fileuploader';
 
 import { firebaseAssociates, firebaseDB, firebase } from '../../../firebase';
-// import { firebaseLooper } from '../../ui/misc';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper'
 
 class AddEditAssociate extends Component {
 
@@ -70,7 +71,7 @@ class AddEditAssociate extends Component {
                 element: 'input',
                 value: '',
                 config: {
-                    label: 'Fecha de nacimiento',
+                    label: 'Nacimiento',
                     name: 'fechaNacimiento_input',
                     type: 'date'
                 },
@@ -85,7 +86,7 @@ class AddEditAssociate extends Component {
                 element: 'input',
                 value: '',
                 config: {
-                    label: 'Documento de Identidad',
+                    label: 'DNI',
                     name: 'dni_input',
                     type: 'text'
                 },
@@ -100,7 +101,7 @@ class AddEditAssociate extends Component {
                 element: 'input',
                 value: '',
                 config: {
-                    label: 'Teléfono de contacto',
+                    label: 'Teléfono',
                     name: 'telefono_input',
                     type: 'text'
                 },
@@ -115,7 +116,7 @@ class AddEditAssociate extends Component {
                 element: 'input',
                 value: '',
                 config: {
-                    label: 'Correo electrónico',
+                    label: 'Email',
                     name: 'correo_input',
                     type: 'text'
                 },
@@ -130,7 +131,7 @@ class AddEditAssociate extends Component {
                 element: 'input',
                 value: '',
                 config: {
-                    label: 'Fecha de incorporación',
+                    label: 'Incorporación',
                     name: 'fechaIncorporacion_input',
                     type: 'date'
                 },
@@ -322,72 +323,99 @@ class AddEditAssociate extends Component {
                             </div>
                         :
                             <form onSubmit={(event)=> this.submitForm(event)}>
+                                <Grid container spacing={24}>
+                                    
+                                    <Grid item xs={12} sm={7}>
+                                        <Grid container spacing={24}>
+                                            <Grid item xs={12} sm={4}>
+                                                <FormField
+                                                    id={'nombre'}
+                                                    formdata={this.state.formdata.nombre}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} sm={4}>
+                                                <FormField
+                                                    id={'primerApellido'}
+                                                    formdata={this.state.formdata.primerApellido}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} sm={4}>
+                                                <FormField
+                                                    id={'segundoApellido'}
+                                                    formdata={this.state.formdata.segundoApellido}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                        <Grid container spacing={24}>
+                                            <Grid item xs={12} sm={4}>
+                                                <FormField
+                                                    id={'dni'}
+                                                    formdata={this.state.formdata.dni}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} sm={4}>
+                                                 <FormField  
+                                                    id={'fechaNacimiento'}
+                                                    formdata={this.state.formdata.fechaNacimiento}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} sm={4}>
+                                                <FormField
+                                                    id={'fechaIncorporacion'}
+                                                    formdata={this.state.formdata.fechaIncorporacion}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                        <Grid container spacing={24}>
+                                            <Grid item xs={12} sm={4}>
+                                                <FormField
+                                                    id={'telefono'}
+                                                    formdata={this.state.formdata.telefono}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} sm={7}>
+                                                <FormField
+                                                    id={'correo'}
+                                                    formdata={this.state.formdata.correo}
+                                                    change={(element)=> this.updateForm(element)}
+                                                />
+                                            </Grid>
+                                        </Grid>
 
-                                <FileUploader
-                                    dir="associates"
-                                    tag={"Foto asociado"}
-                                    defaultImg={this.state.defaultImg}
-                                    defaultImgName={this.state.formdata.image.value}
-                                    resetImage={()=> this.resetImage()}
-                                    filename={(filename)=> this.storeFilename(filename)}
-                                />
-
-                                <FormField
-                                    id={'nombre'}
-                                    formdata={this.state.formdata.nombre}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'primerApellido'}
-                                    formdata={this.state.formdata.primerApellido}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'segundoApellido'}
-                                    formdata={this.state.formdata.segundoApellido}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'dni'}
-                                    formdata={this.state.formdata.dni}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'fechaNacimiento'}
-                                    formdata={this.state.formdata.fechaNacimiento}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'telefono'}
-                                    formdata={this.state.formdata.telefono}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'correo'}
-                                    formdata={this.state.formdata.correo}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-                                <FormField
-                                    id={'fechaIncorporacion'}
-                                    formdata={this.state.formdata.fechaIncorporacion}
-                                    change={(element)=> this.updateForm(element)}
-                                />
-
-                                <div className="success_label">{this.state.formSuccess}</div>
-                                {
-                                    this.state.formError
-                                    ?
-                                        <div className="error_label">
-                                            Error: por favor, revisa los datos.
+                                        <div className="success_label">{this.state.formSuccess}</div>
+                                        {
+                                            this.state.formError
+                                            ?
+                                                <div className="error_label">
+                                                    Error: por favor, revisa los datos.
+                                                </div>
+                                            :
+                                                ''
+                                        }
+                                        <div className="admin_submit">
+                                            <button onClick={(event)=> this.submitForm(event)}>
+                                                {this.state.formType}
+                                            </button>
                                         </div>
-                                    :
-                                        ''
-                                }
-                                <div className="admin_submit">
-                                    <button onClick={(event)=> this.submitForm(event)}>
-                                        {this.state.formType}
-                                    </button>
-                                </div>
+                                    </Grid>
+                                    <Grid item xs={12} sm={5}>
+                                        <FileUploader
+                                            dir="associates"
+                                            tag={"Foto asociado"}
+                                            defaultImg={this.state.defaultImg}
+                                            defaultImgName={this.state.formdata.image.value}
+                                            resetImage={()=> this.resetImage()}
+                                            filename={(filename)=> this.storeFilename(filename)}
+                                        />
+                                    </Grid>
+                                </Grid>
                         </form>
                     }
                 </div> 

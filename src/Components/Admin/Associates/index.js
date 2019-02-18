@@ -43,10 +43,10 @@ class AdminAssociates extends Component {
                     <Paper>
                         <Table>
                             <TableHead>
-                                <TableRow>
-                                    <TableCell><strong>Nombre</strong></TableCell>
-                                    <TableCell style={{width: 150}}><strong>Apellidos</strong></TableCell>
-                                    <TableCell><strong>Fecha de nacimiento</strong></TableCell>
+                                <TableRow style={{textTransform: 'uppercase'}}>
+                                    <TableCell style={{width: 100}}><strong>Nombre</strong></TableCell>
+                                    <TableCell style={{width: 120}}><strong>Apellidos</strong></TableCell>
+                                    <TableCell><strong>Nacimiento</strong></TableCell>
                                     <TableCell><strong>DNI</strong></TableCell>
                                     <TableCell><strong>Teléfono</strong></TableCell>
                                     <TableCell><strong>Email</strong></TableCell>
@@ -60,15 +60,15 @@ class AdminAssociates extends Component {
                                         ?
                                         this.state.associates.map((associate,i) => (
                                             <TableRow key={i}>
-                                                <TableCell>{associate.nombre}</TableCell>
-                                                <TableCell style={{width: 150}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
+                                                <TableCell style={{width: 100}}>{associate.nombre}</TableCell>
+                                                <TableCell style={{width: 120}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
                                                 <TableCell>{associate.fechaNacimiento}</TableCell>
                                                 <TableCell>{associate.dni}</TableCell>
                                                 <TableCell>{associate.telefono}</TableCell>
                                                 <TableCell>{associate.correo}</TableCell>
                                                 <TableCell>{associate.fechaIncorporacion}</TableCell>
                                                 <TableCell>
-                                                    <Link to={`/admin_associates/edit_associate/${associate.id}`}>
+                                                    <Link style={{color: '#008ee0'}} to={`/admin_associates/edit_associate/${associate.id}`}>
                                                         Editar
                                                     </Link>
                                                 </TableCell>
