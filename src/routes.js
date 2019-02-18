@@ -17,7 +17,7 @@ import PublicRoute from './Components/authRoutes/publicRoutes';
 
 const Routes = (props) => {
 
-  console.log(props)
+  // console.log(props)
 
   return (
     <Layout>

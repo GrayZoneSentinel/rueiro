@@ -29,9 +29,9 @@ var config = {
 export {
     firebase,
     firebaseMatches,
-    //
+
     firebaseAssociates,
-    //
+
     firebasePromotions,
     firebaseTeams,
     firebaseDB

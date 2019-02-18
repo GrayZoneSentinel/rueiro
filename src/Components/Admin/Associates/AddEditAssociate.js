@@ -6,12 +6,15 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 
 import FileUploader from '../../ui/fileuploader';
 
-import { firebaseAssociates, firebaseDB } from '../../../firebase';
+import { firebaseAssociates, firebaseDB, firebase } from '../../../firebase';
 // import { firebaseLooper } from '../../ui/misc';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class AddEditAssociate extends Component {
 
     state = {
+        isloading:true,
         associateId: '',
         formType: '',
         formError: false,
@@ -140,9 +143,9 @@ class AddEditAssociate extends Component {
             },
             image:{
                 element:'image',
-                value:'',
+                value:'',    
                 validation:{
-                    required:true
+                    required:false
                 },
                 valid:false
             } 
@@ -174,19 +177,36 @@ class AddEditAssociate extends Component {
         })
     }
 
-    updateFields( associate, type, associateId ) {
-        const newFormdata = {
-            ...this.state.formdata
-        }
+    // updateFields( associate, type, associateId ) {
+    //     const newFormdata = {
+    //         ...this.state.formdata
+    //     }
+    //     for(let key in newFormdata) {
+    //         if(associate) {
+    //             newFormdata[key].value = associate[key];
+    //             newFormdata[key].valid = true;
+    //         }
+    //     } 
+        
+    //     this.setState({
+    //         associateId,
+    //         formType: type,
+    //         formdata: newFormdata
+    //     })
+    // }
+
+    updateFields = ( associate, associateId, type, defaultImg ) => {
+
+        const newFormdata = { ...this.state.formdata }
+
         for(let key in newFormdata) {
-            if(associate) {
-                newFormdata[key].value = associate[key];
-                newFormdata[key].valid = true;
-            }
+            newFormdata[key].value = associate[key];
+            newFormdata[key].valid = true;
         } 
         
         this.setState({
             associateId,
+            defaultImg,
             formType: type,
             formdata: newFormdata
         })
@@ -240,28 +260,33 @@ class AddEditAssociate extends Component {
         }
         
     }
-
-    
+ 
     componentDidMount() {
+
         const associateId = this.props.match.params.id;
-        
-        const getAssociates = (associate, type) => {
-            firebaseAssociates.once('value').then(snapshot => {    
-                this.updateFields( associate, type, associateId )
+        if( !associateId ) {
+            this.setState({
+                isloading:false,
+                formType: 'Agregar asociado'
             })
-        }
-        
-        // console.log(matchId);
-        if(!associateId){
-            //Add matchID
-            getAssociates(false, 'Agregar asociado')
         } else {
             firebaseDB.ref(`associates/${associateId}`).once('value')
-            .then((snapshot)=>{
-                const associate = snapshot.val();
-                getAssociates(associate, 'Editar asociado')
+            .then(snapshot => {
+                const associateData = snapshot.val();
+                firebase.storage().ref('associates')
+                .child( associateData.image ).getDownloadURL()
+                .then( url => {
+                    this.updateFields( associateData, associateId, 'Editar asociado' , url );
+                    this.setState({isloading:false})
+                }).catch( e => {
+                    this.updateFields({
+                        ...associateData,
+                        image:''
+                    }, associateId, 'Editar asociado', '' )
+                })
             })
         }
+
     }
 
     resetImage = () => {
@@ -279,84 +304,94 @@ class AddEditAssociate extends Component {
     }
 
   render() {
-      console.log(this.state.formdata)
+    //console.log(this.state.formdata)
     return (
       <AdminLayout>
-        <div className="editassociate_dialog_wrapper">
-            <h2>
-                {this.state.formType}
-            </h2>
-            <div>
-                <form onSubmit={(event)=> this.submitForm(event)}>
-
-                    <FileUploader
-                        dir="associates"
-                        tag={"Foto asociado"}
-                        defaultImg={this.state.defaultImg}
-                        defaultImgName={this.state.formdata.image.value}
-                        resetImage={()=> this.resetImage()}
-                        filename={(filename)=> this.storeFilename(filename)}
-                    />
-
-                    <FormField
-                        id={'nombre'}
-                        formdata={this.state.formdata.nombre}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'primerApellido'}
-                        formdata={this.state.formdata.primerApellido}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'segundoApellido'}
-                        formdata={this.state.formdata.segundoApellido}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'dni'}
-                        formdata={this.state.formdata.dni}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'fechaNacimiento'}
-                        formdata={this.state.formdata.fechaNacimiento}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'telefono'}
-                        formdata={this.state.formdata.telefono}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'correo'}
-                        formdata={this.state.formdata.correo}
-                        change={(element)=> this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'fechaIncorporacion'}
-                        formdata={this.state.formdata.fechaIncorporacion}
-                        change={(element)=> this.updateForm(element)}
-                    />
-
-                    <div className="success_label">{this.state.formSuccess}</div>
+            <div className="editassociate_dialog_wrapper">
+                <h2>
+                    {this.state.formType}
+                </h2>
+                <div>
+                    {/* Loader Spinner  */}
+                    
                     {
-                        this.state.formError
+                        this.state.isloading
                         ?
-                            <div className="error_label">
-                                Error: por favor, revisa los datos.
+                            <div className="admin_progress">
+                                <CircularProgress thickness={4} style={{color:'#008ee0'}}/>
                             </div>
                         :
-                            ''
+                            <form onSubmit={(event)=> this.submitForm(event)}>
+
+                                <FileUploader
+                                    dir="associates"
+                                    tag={"Foto asociado"}
+                                    defaultImg={this.state.defaultImg}
+                                    defaultImgName={this.state.formdata.image.value}
+                                    resetImage={()=> this.resetImage()}
+                                    filename={(filename)=> this.storeFilename(filename)}
+                                />
+
+                                <FormField
+                                    id={'nombre'}
+                                    formdata={this.state.formdata.nombre}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'primerApellido'}
+                                    formdata={this.state.formdata.primerApellido}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'segundoApellido'}
+                                    formdata={this.state.formdata.segundoApellido}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'dni'}
+                                    formdata={this.state.formdata.dni}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'fechaNacimiento'}
+                                    formdata={this.state.formdata.fechaNacimiento}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'telefono'}
+                                    formdata={this.state.formdata.telefono}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'correo'}
+                                    formdata={this.state.formdata.correo}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+                                <FormField
+                                    id={'fechaIncorporacion'}
+                                    formdata={this.state.formdata.fechaIncorporacion}
+                                    change={(element)=> this.updateForm(element)}
+                                />
+
+                                <div className="success_label">{this.state.formSuccess}</div>
+                                {
+                                    this.state.formError
+                                    ?
+                                        <div className="error_label">
+                                            Error: por favor, revisa los datos.
+                                        </div>
+                                    :
+                                        ''
+                                }
+                                <div className="admin_submit">
+                                    <button onClick={(event)=> this.submitForm(event)}>
+                                        {this.state.formType}
+                                    </button>
+                                </div>
+                        </form>
                     }
-                    <div className="admin_submit">
-                        <button onClick={(event)=> this.submitForm(event)}>
-                            {this.state.formType}
-                        </button>
-                    </div>
-                </form>
+                </div> 
             </div>
-        </div>
       </AdminLayout>
     )
   }

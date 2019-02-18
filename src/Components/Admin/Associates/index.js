@@ -36,9 +36,7 @@ class AdminAssociates extends Component {
     }
 
     render() {
-
-        console.log(this.state)
-
+        // console.log(this.state)
         return (
             <AdminLayout>
                 <div>
@@ -47,7 +45,7 @@ class AdminAssociates extends Component {
                             <TableHead>
                                 <TableRow>
                                     <TableCell><strong>Nombre</strong></TableCell>
-                                    <TableCell style={{width: 100}}><strong>Apellidos</strong></TableCell>
+                                    <TableCell style={{width: 150}}><strong>Apellidos</strong></TableCell>
                                     <TableCell><strong>Fecha de nacimiento</strong></TableCell>
                                     <TableCell><strong>DNI</strong></TableCell>
                                     <TableCell><strong>Teléfono</strong></TableCell>
@@ -63,7 +61,7 @@ class AdminAssociates extends Component {
                                         this.state.associates.map((associate,i) => (
                                             <TableRow key={i}>
                                                 <TableCell>{associate.nombre}</TableCell>
-                                                <TableCell style={{width: 100}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
+                                                <TableCell style={{width: 150}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
                                                 <TableCell>{associate.fechaNacimiento}</TableCell>
                                                 <TableCell>{associate.dni}</TableCell>
                                                 <TableCell>{associate.telefono}</TableCell>

@@ -221,7 +221,7 @@ class AddEditMatch extends Component {
 
         newFormdata[element.id] = newElement;
 
-        console.log(newFormdata)
+        // console.log(newFormdata)
 
         this.setState({
             formError: false,
